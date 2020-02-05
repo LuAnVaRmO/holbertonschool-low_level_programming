@@ -1,0 +1,308 @@
+       When you invoke GCC, it normally does preprocessing, compilation, assembly and linking.  The "overall options" allow you to stop this process at an
+       intermediate stage.  For example, the -c option says not to run the linker.  Then the output consists of object files output by the assembler.
+       the assembler and linker; most of these are not documented here, since you rarely need to use any of them.
+           -fobjc-exceptions -fobjc-gc -fobjc-nilcheck -fobjc-std=objc1 -freplace-objc-classes -fzero-link -gen-decls -Wassign-intercept -Wno-protocol  -Wselector
+           -fdump-unnumbered-links -fdump-translation-unit[-n] -fdump-class-hierarchy[-n] -fdump-ipa-all -fdump-ipa-cgraph -fdump-ipa-inline -fdump-passes
+           -fvariable-expansion-in-unroller -fvect-cost-model -fvpt -fweb -fwhole-program -fwpa -fuse-ld=linker -fuse-linker-plugin --param name=value -O  -O0  -O1
+           -static-libtsan -shared -shared-libgcc  -symbolic -T script  -Wl,option  -Xlinker option -u symbol
+           -compatibility_version  -current_version -dead_strip -dependency-file  -dylib_file  -dylinker_install_name -dynamic  -dynamiclib  -exported_symbols_list
+           -nomultidefs  -noprebind  -noseglinkedit -pagezero_size  -prebind  -prebind_all_twolevel_modules -private_bundle  -read_only_relocs  -sectalign
+           -seg_addr_table_filename  -seglinkedit -segprot  -segs_read_only_addr  -segs_read_write_addr -single_module  -static  -sub_library  -sub_umbrella
+           -mno-media  -mmuladd  -mno-muladd -mfdpic  -minline-plt -mgprel-ro  -multilib-library-pic -mlinked-fp  -mlong-calls  -malign-labels -mlibrary-pic
+           -mfixed-range=register-range -mjump-in-delay -mlinker-opt -mlong-calls -mlong-load-store  -mno-big-switch  -mno-disable-fpregs -mno-disable-indexing
+           -mflip-mips16 -minterlink-mips16  -mno-interlink-mips16 -mabi=abi  -mabicalls  -mno-abicalls -mshared  -mno-shared  -mplt  -mno-plt  -mxgot  -mno-xgot
+       Compilation can involve up to four stages: preprocessing, compilation proper, assembly and linking, always in that order.  GCC is capable of preprocessing
+       file, and linking combines all the object files (those newly compiled, and those specified as input) into an executable file.
+           Objective-C source code.  Note that you must link with the libobjc library to make an Objective-C program work.
+           Objective-C++ source code.  Note that you must link with the libobjc library to make an Objective-C++ program work.  Note that .M refers to a literal
+           An object file to be fed straight into linking.  Any file name with no recognized suffix is treated this way.
+       -c  Compile or assemble the source files, but do not link.  The linking stage simply is not done.  The ultimate output is in the form of an object file for
+               Display target-specific options.  Unlike the --target-help option however, target-specific options of the linker and assembler are not displayed.
+           Do not expand any symbolic links, resolve references to /../ or /./, or make the path absolute when generating a relative prefix.
+       However, the use of gcc does not add the C++ library.  g++ is a program that calls GCC and automatically specifies linking against the C++ library.  It
+           linking with a different library.  In addition, when a function is recognized as a built-in function, GCC may use information about that function to
+           To save space, do not emit out-of-line copies of inline functions controlled by #pragma implementation.  This causes linker errors if these functions
+           Enable automatic template instantiation at link time.  This option also implies -fno-implicit-templates.
+           export table of a DSO and do not require a PLT indirection when used within the DSO.  Enabling this option can have a dramatic effect on load and link
+           Explicitly instantiated inline methods are unaffected by this option as their linkage might otherwise cross a shared library boundary.
+           This flag attempts to use visibility settings to make GCC's C++ linkage model compatible with that of Microsoft Visual Studio.
+           The flag makes these changes to GCC's linkage model:
+           Do not use weak symbol support, even if it is provided by the linker.  By default, G++ uses weak symbols if they are available.  This option exists only
+             Note that these functions have linkage like inline functions; they just aren't inlined by default.
+           Emit a special marker instructing ld(1) not to statically link in the resulting object file, and allow dyld(1) to load it in at run time instead.  This
+       -fzero-link
+           time) with static class references that get initialized at load time, which improves run-time performance.  Specifying the -fzero-link flag suppresses
+           Warn if the type of main is suspicious.  main should be a function with external linkage, returning int, taking either zero arguments, two, or three
+           avoid linking files with debug information.  To be useful, this option requires a debugger capable of reading .dwo files.
+           section.  It is more efficient to put them in a separate comdat sections since the linker can then remove duplicates.  But not all DWARF consumers
+           option in any actual compilation (rather than preprocessing, assembly or linking).  To get just a warning, setting GCC_COMPARE_DEBUG to
+           Direct the linker to not merge together strings in the debugging information that are identical in different object files.  Merging is not supported by
+           all assemblers or linkers.  Merging decreases the size of the debug information in the output file at the cost of increasing link processing time.
+           want data about, and you must also use it when linking.
+           want data about, and you must also use it when linking.
+           This option is used to compile and link code instrumented for coverage analysis.  The option is a synonym for -fprofile-arcs -ftest-coverage (when
+           compiling) and -lgcov (when linking).  See the documentation for those options for more details.
+       -fdump-unnumbered-links
+           When doing debugging dumps (see -d option above), suppress instruction numbers for the links to the previous and next instructions in a sequence.
+           linker if linking is done).
+           Print the full absolute name of the library file library that would be used when linking---and don't do anything else.  With this option, GCC does not
+           compile or link anything; it just prints the file name.
+           This is useful when you use -nostdlib or -nodefaultlibs but you do want to link with libgcc.a.  You can do:
+           This option is the default for optimized compilation if the assembler and linker support it.  Use -fno-merge-constants to inhibit this behavior.
+           some other classes of C/C++ programming errors.  The instrumentation relies on a separate runtime library (libmudflap), which is linked into a program
+           if -fmudflap is given at link time.  Run-time behavior of the instrumented program is controlled by the MUDFLAP_OPTIONS environment variable.  See "env
+           Use -fmudflapth instead of -fmudflap to compile and to link if your program is multi-threaded.  Use -fmudflapir, in addition to -fmudflap or
+           This optimization is automatically turned off in the presence of exception handling, for linkonce sections, for functions with a user-defined section
+           frequently executed functions and ".text.unlikely" for unlikely executed functions.  Reordering is done by the linker so object file format must support
+           named sections and linker must place them in a reasonable way.
+           This option should not be used in combination with "-flto".  Instead relying on a linker plugin should provide safer and more precise information.
+           This option runs the standard link-time optimizer.  When invoked with source code, it generates GIMPLE (one of GCC's internal representations) and
+           writes it to special ELF sections in the object file.  When the object files are linked together, all the function bodies are read from these ELF
+           To use the link-time optimizer, -flto needs to be specified at compile time and during the final link.  For example:
+           Another (simpler) way to enable link-time optimization is:
+           The only important thing to keep in mind is that to enable link-time optimizations the -flto flag needs to be passed to both the compile and the link
+           variables can be accessed by libraries and runtime outside of the link-time optimized unit.  When supported by the linker, the linker plugin (see
+           -fuse-linker-plugin) passes information to the compiler about used and externally visible symbols.  When the linker plugin is not available,
+           the usual final code.  This means that object files with LTO information can be linked as normal object files; if -flto is not passed to the linker, no
+           Additionally, the optimization flags used to compile individual files are not necessarily related to those used at link time.  For instance,
+           When producing the final binary with -flto, GCC only applies link-time optimizations to those files that contain bytecode.  Therefore, you can mix and
+           files to link without further processing.
+           There are some code generation flags preserved by GCC when generating bytecodes, as they need to be used during the final link stage.  Currently, the
+           At link time, these options are read in and reapplied.  Note that the current implementation makes no attempt to recognize conflicting values for these
+           value read from the bytecode files.  It is recommended, then, that you compile all the files participating in the same link with the same options.
+           If LTO encounters objects with C linkage declared with incompatible types in separate translation units to be linked together (undefined behavior
+           Notice that the final link is done with g++ to get the C++ runtime libraries and -lgfortran is added to get the Fortran runtime libraries.  In general,
+           when mixing languages in LTO mode, you should use the same link command options as when mixing languages in a regular (non-LTO) compilation; all you
+           need to add is -flto to all the compile and link commands.
+           If object files containing GIMPLE bytecode are stored in a library archive, say libfoo.a, it is possible to extract and use them in an LTO link if you
+           are using a linker with plugin support.  To enable this feature, use the flag -fuse-linker-plugin at link time:
+                   gcc -o myprog -O2 -flto -fuse-linker-plugin a.o b.o -lfoo
+           With the linker plugin enabled, the linker extracts the needed GIMPLE files from libfoo.a and passes them on to the running GCC to make them part of the
+           If you are not using a linker with plugin support and/or do not enable the linker plugin, then the objects inside libfoo.a are extracted and linked as
+           optimization opportunities.  Use of -fwhole-program is not needed when linker plugin is active (see -fuse-linker-plugin).
+           If you specify the optional n, the optimization and code generation done at link time is executed in parallel using n parallel jobs by utilizing an
+           Specify the partitioning algorithm used by the link-time optimizer.  The value is either "1to1" to specify a partitioning mirroring the original source
+           Prints a report with internal details on the workings of the link-time optimizer.  The contents of this report vary from version to version.  It is
+       -fuse-linker-plugin
+           Enables the use of a linker plugin during link-time optimization.  This option relies on plugin support in the linker, which is available in gold or in
+           more code to the link-time optimizer.  This information specifies what symbols can be accessed externally (by non-LTO object or during dynamic linking).
+           This option is enabled by default when LTO support in GCC is enabled and GCC was configured for use with a linker supporting plugins (GNU ld 2.21 or
+           Fat LTO objects are object files that contain both the intermediate language and the object code. This makes them usable for both LTO linking and normal
+           linking. This option is effective only when compiling with -flto and is ignored at link time.
+           -fno-fat-lto-objects improves compilation time over plain LTO, but requires the complete toolchain to be aware of LTO. It requires a linker with linker
+           plugin support for basic functionality.  Additionally, nm, ar and ranlib need to support linker plugins to allow a full-featured build environment
+           The default is -ffat-lto-objects but this default is intended to change in future releases when linker plugin enabled environments become more common.
+           Use the bfd linker instead of the default linker.
+           Use the gold linker instead of the default linker.
+           You must use -fprofile-generate both when compiling and when linking your program.
+           used at link-time, it may include libraries or startup files that change the default FPU control word or other similar optimizations.
+           Use these options on systems where the linker can perform optimizations to improve locality of reference in the instruction space.  Most systems using
+           the ELF object format and SPARC processors running Solaris 2 have linkers with such optimizations.  AIX may have these optimizations in the future.
+           Only use these options when there are significant benefits from doing so.  When you specify these options, the assembler and linker create larger object
+       These options come into play when the compiler links object files into an executable output file.  They are meaningless if the compiler is not doing a link
+           libraries by the linker according to the file contents.)  If linking is done, these object files are used as input to the linker.
+       -E  If any of these options is used, then the linker is not run, and object file names should not be used as arguments.
+           Search the library named library when linking.  (The second alternative with the library as a separate argument is only for POSIX compliance and is not
+           It makes a difference where in the command you write this option; the linker searches and processes libraries and object files in the order they are
+           The linker searches a standard list of directories for the library, which is actually a file named liblibrary.a.  The linker then uses this file as if
+           Normally the files found this way are library files---archive files whose members are object files.  The linker handles an archive file by scanning
+           it is linked in the usual fashion.  The only difference between using an -l option and specifying a file name is that -l surrounds library with lib and
+           You need this special case of the -l option in order to link an Objective-C or Objective-C++ program.
+           Do not use the standard system startup files when linking.  The standard system libraries are used normally, unless -nostdlib or -nodefaultlibs is used.
+           Do not use the standard system libraries when linking.  Only the libraries you specify are passed to the linker, and options specifying linkage of the
+           Do not use the standard system startup files or libraries when linking.  No startup files and only the libraries you specify are passed to the linker,
+           and options specifying linkage of the system libraries, such as "-static-libgcc" or "-shared-libgcc", are ignored.
+           compilation (-fpie, -fPIE, or model suboptions) when you specify this linker option.
+           Pass the flag -export-dynamic to the ELF linker, on targets that support it. This instructs the linker to add all symbols, not only used ones, to the
+           On systems that support dynamic linking, this prevents linking with the shared libraries.  On other systems, this option has no effect.
+           Produce a shared object which can then be linked with other objects to form an executable.  Not all systems support this option.  For predictable
+           results, you must also specify the same set of options used for compilation (-fpic, -fPIC, or model suboptions) when you specify this linker option.[1]
+           If, instead, you use the GCC driver to create shared libraries, you may find that they are not always linked with the shared libgcc.  If GCC finds, at
+           its configuration time, that you have a non-GNU linker or a GNU linker that does not support option --eh-frame-hdr, it links the shared version of
+           libgcc into shared libraries by default.  Otherwise, it takes advantage of the linker and optimizes away the linking with the shared version of libgcc,
+           linking with the static version of libgcc by default.  This allows exceptions to propagate through such shared libraries, without incurring relocation
+           However, if a library or main executable is supposed to throw or catch exceptions, you must link it using the G++ or GCJ driver, as appropriate for the
+           languages used in the program, or using the option -shared-libgcc, such that it is linked with the shared libgcc.
+           When the -fsanitize=address option is used to link a program, the GCC driver automatically links against libasan.  If libasan is available as a shared
+           library, and the -static option is not used, then this links against the shared version of libasan.  The -static-libasan option directs the GCC driver
+           to link libasan statically, without necessarily linking other libraries statically.
+           When the -fsanitize=thread option is used to link a program, the GCC driver automatically links against libtsan.  If libtsan is available as a shared
+           library, and the -static option is not used, then this links against the shared version of libtsan.  The -static-libtsan option directs the GCC driver
+           to link libtsan statically, without necessarily linking other libraries statically.
+           When the g++ program is used to link a C++ program, it normally automatically links against libstdc++.  If libstdc++ is available as a shared library,
+           and the -static option is not used, then this links against the shared version of libstdc++.  That is normally fine.  However, it is sometimes useful to
+           freeze the version of libstdc++ used by the program without going all the way to a fully static link.  The -static-libstdc++ option directs the g++
+           driver to link libstdc++ statically, without necessarily linking other libraries statically.
+           Bind references to global symbols when building a shared object.  Warn about any unresolved references (unless overridden by the link editor option
+           -Xlinker -z -Xlinker defs).  Only a few systems support this option.
+           Use script as the linker script.  This option is supported by most systems using the GNU linker.  On some targets, such as bare-board targets without an
+           operating system, the -T option may be required when linking to avoid references to undefined symbols.
+       -Xlinker option
+           Pass option as an option to the linker.  You can use this to supply system-specific linker options that GCC does not recognize.
+           If you want to pass an option that takes a separate argument, you must use -Xlinker twice, once for the option and once for the argument.  For example,
+           to pass -assert definitions, you must write -Xlinker -assert -Xlinker definitions.  It does not work to write -Xlinker "-assert definitions", because
+           this passes the entire string as a single argument, which is not what the linker expects.
+           When using the GNU linker, it is usually more convenient to pass arguments to linker options using the option=value syntax than as separate arguments.
+           For example, you can specify -Xlinker -Map=output.map rather than -Xlinker -Map -Xlinker output.map.  Other linkers may not support this syntax for
+           Pass option as an option to the linker.  If option contains commas, it is split into multiple options at the commas.  You can use this syntax to pass an
+           argument to the option.  For example, -Wl,-Map,output.map passes -Map output.map to the linker.  When using the GNU linker, you can also get the same
+           Pretend the symbol symbol is undefined, to force linking of library modules to define it.  You can use -u multiple times with different symbols to force
+           -B prefixes that effectively specify directory names also apply to libraries in the linker, because the compiler translates these options into -L
+           options for the linker.  They also apply to includes files in the preprocessor, because the compiler translates these options into -isystem options for
+           are tried, and that is all.  The file is left out of the link if it is not found by those means.
+           The GNU linker (beginning with version 2.16) has the necessary support for this option.  If your linker does not support this option, the header file
+           Programs can be statically or dynamically linked.  This model is not fully implemented and mostly treated as small.
+           Programs can be statically or dynamically linked.  This is the default code model.
+           statically linked only.
+           The default depends on the specific target configuration.  Note that the hard-float and soft-float ABIs are not link-compatible; you must compile your
+           entire program with the same ABI, and link with a compatible set of libraries.
+           shared libraries.  The GNU descriptor scheme is compatible with the original scheme, but does require new assembler, linker and library support.
+           option to the linker command line when the linker is called.
+           Jump relaxing is performed by the linker because jump offsets are not known before code is located. Therefore, the assembler code generated by the
+           Relaxing must be turned on if linker stubs are needed, see the section on "EIND" and linker stubs below.
+       ·   For indirect calls to functions and computed goto, the linker generates stubs. Stubs are jump pads sometimes also called trampolines. Thus, the indirect
+       ·   Linker relaxation must be turned on so that the linker will generate the stubs correctly an all situaltion. See the compiler option "-mrelax" and the
+           linler option "--relax".  There are corner cases where the linker is supposed to generate stubs but aborts without relaxation and without a helpful
+       ·   The default linker script is arranged for code with "EIND = 0".  If code is supposed to work for a setup with "EIND != 0", a custom linker script has to
+           The "__trampolines_start" symbol is defined in the linker script.
+       ·   Stubs are generated automatically by the linker if the following two conditions are met:
+           and the application be linked with "-Wl,--defsym,func_4=0x4".  Alternatively, "func_4" can be defined in the linker script.
+           linked in if -msim is not given.
+           Specifies that the program will be run on the simulator.  This causes the simulator BSP provided by libgloss to be linked in.  This option has effect
+           Generate code that supports shared libraries via the library ID method, but assumes that this library or executable won't link against any other ID
+           Do not assume that the code being compiled won't link against any ID shared libraries.  Slower code is generated for jump and call insns.
+           Build a standalone application for multicore Blackfin processors.  This option causes proper start files and link scripts supporting multicore to be
+           Build a standalone application for Core A of BF561 when using the one-application-per-core programming model. Proper start files and link scripts are
+           Build a standalone application for Core B of BF561 when using the one-application-per-core programming model. Proper start files and link scripts are
+           Build a standalone application for SDRAM. Proper start files and link scripts are used to put the application into SDRAM, and the macro "__BFIN_SDRAM"
+           Choose startup files and linker script suitable for the simulator.
+           This option, recognized for the cris-axis-elf, arranges to link with input-output functions from a simulator library.  Code, initialized data and zero-
+           Like -sim, but pass linker options to locate initialized data at 0x40000000 and zero-initialized data at 0x80000000.
+       Darwin does create "fat" files if multiple -arch options are used; it does so by running the compiler or linker multiple times and joining the results
+       subtype of the file it is generating, so you cannot put 64-bit instructions in a ppc750 object file.  The linker for shared libraries, /usr/bin/libtool,
+       object file in a ppc7400 library).  The linker for executables, ld, quietly gives the executable the most restrictive subtype of any of its input files.
+           Causes the output file to be marked such that the dynamic linker will bind all undefined references when the file is loaded or launched.
+           This option specifies the executable that will load the build output file being linked.  See man ld(1) for more information.
+           When passed this option, GCC produces a dynamic library instead of an executable when linking, using the Darwin libtool command.
+       -dylinker_install_name
+       -noseglinkedit
+       -seglinkedit
+           These options are passed to the Darwin linker.  The Darwin linker man page describes them in detail.
+           Assume that runtime support has been provided and so there is no need to include the simulator library (libsim.a) on the linker command line.
+       -mlinked-fp
+           disabled with -mno-linked-fp.
+           When compiling, this option enables -mbionic, -fPIC, -fno-exceptions and -fno-rtti by default.  When linking, this option makes the GCC driver pass
+           Android-specific options to the linker.  Finally, this option causes the preprocessor macro "__ANDROID__" to be defined.
+           Disable linking effects of -mandroid, i.e., pass standard Linux linking options to the linker.
+           Shorten some address references at link time, when possible; uses the linker option -relax.
+           Generate code suitable for big switch tables.  Use this option only if the assembler/linker complain about out-of-range branches within a switch table.
+           Generate 3-instruction load and store sequences as sometimes required by the HP-UX 10 linker.  This is equivalent to the +k option to the HP compilers.
+       -mlinker-opt
+           Enable the optimization pass in the HP-UX linker.  Note this makes symbolic debugging impossible.  It also triggers a bug in the HP-UX 8 and HP-UX 9
+           linkers in which they give bogus error messages when linking some programs.
+           implicitly, with the GNU linker.  This option does not affect which ld is called; it only changes what parameters are passed to that ld.  The ld that is
+           called is determined by the --with-ld configure option, GCC's program search path, and finally by the user's PATH.  The linker used by GCC can be
+           Use options specific to HP ld.  This passes -b to ld when building a shared library and passes +Accept TypeMismatch to ld on all links.  It is the
+           default when GCC is configured, explicitly or implicitly, with the HP linker.  This option does not affect which ld is called; it only changes what
+           user's PATH.  The linker used by GCC can be printed using which `gcc -print-prog-name=ld`.  This option is only available on the 64-bit HP-UX GCC, i.e.
+           Generate code that uses long call sequences.  This ensures that a call is always able to reach linker generated stubs.  The default is to generate long
+           options together under HP-UX with the SOM linker.
+           linking is used to build the application.
+           The types of long calls used depends on the capabilities of the assembler and linker, and the type of code being generated.  The impact on systems that
+           Suppress the generation of link options to search libdld.sl when the -static option is specified on HP-UX 10 and later.
+           option is specified, special link options are needed to resolve this dependency.
+           On HP-UX 10 and later, the GCC driver adds the necessary options to link with libdld.sl when the -static option is specified.  This causes the resulting
+           binary to be dynamic.  On the 64-bit port, the linkers generate dynamic binaries by default in any case.  The -nolibdld option can be used to prevent
+           the GCC driver from adding these link options.
+           Add support for multithreading with the dce thread library under HP-UX.  This option sets flags for both the preprocessor and linker.
+           objects linked into the binary, and defaults to 65535.
+           SVML or ACML ABI-compatible library must be specified at link time.
+           Support thread-safe exception handling on MinGW.  Programs that rely on thread-safe exception handling must compile and link all code with the -mthreads
+           option.  When compiling, -mthreads defines "-D_MT"; when linking, it links in a special thread helper library -lmingwthrd which cleans up per-thread
+           Generate code for the small code model: the program and its symbols must be linked in the lower 2 GB of the address space.  Pointers are 64 bits.
+           Programs can be statically or dynamically linked.  This is the default code model.
+           Generate code for the medium model: the program is linked in the lower 2 GB of the address space.  Small symbols are also placed there.  Symbols with
+           dynamically linked.
+           This option specifies that a console application is to be generated, by instructing the linker to set the PE header subsystem type required for console
+           This option is available for Cygwin and MinGW targets.  It specifies that a DLL---a dynamic link library---is to be generated, enabling the selection of
+           This option is available for Cygwin and MinGW targets.  It specifies that a GUI application is to be generated by instructing the linker to set the PE
+           Generate (or don't) code for the GNU linker.  This is the default.
+           Specifies that the program will be run on the simulator.  This causes an alternate runtime library to be linked in which supports, for example, file
+           All modules should be compiled with the same -G num value.  Compiling with different values of num may or may not work; if it doesn't the linker gives
+           64k.  Anything larger causes the linker to report an error such as:
+           Note that some linkers, including newer versions of the GNU linker, can create multiple GOTs and sort GOT entries.  If you have such a linker, you
+           Assume that runtime support has been provided and so omit the simulator library (libsim.a) from the linker command line.
+       -minterlink-mips16
+       -mno-interlink-mips16
+           Require (do not require) that non-MIPS16 code be link-compatible with MIPS16 code.
+           For example, non-MIPS16 code cannot jump directly to MIPS16 code; it must either use a call or an indirect jump.  -minterlink-mips16 therefore disables
+           Generate (do not generate) code that is fully position-independent, and that can therefore be linked into shared libraries.  This option only affects
+           -mno-shared depends on binutils 2.16 or higher and generates objects that can only be linked by the GNU linker.  However, the option does not affect the
+           Assume (do not assume) that the static and dynamic linkers support PLTs and copy relocations.  This option only affects -mno-shared -mabicalls.  For the
+           64k.  Anything larger causes the linker to report an error such as:
+           Note that some linkers can create multiple GOTs.  If you have such a linker, you should only need to use -mxgot when a single object file accesses more
+           is likely to suffer a link-time or run-time failure.
+           If the linker complains that an application is using too much small data, you might want to try rebuilding the less performance-critical parts with
+           attach a "section" attribute to Var's definition.  If Var is common, you must link the application with a high-enough -G setting.
+           The easiest way of satisfying these restrictions is to compile and link every module with the same -G option.  However, you may wish to build a library
+           3.  the memory occupied by an object with a link-time-constant address.
+           Try to turn PIC calls that are normally dispatched via register $25 into direct calls.  This is only possible if the linker can resolve the destination
+           at link-time and if the destination is within range for a direct call.
+           -mrelax-pic-calls is the default if GCC was configured to use an assembler and a linker that support the ".reloc" assembly directive and
+           "-mexplicit-relocs" is in effect.  With "-mno-explicit-relocs", this optimization can be performed by the assembler and the linker alone without help
+           linker) for a constant to be set up in a global register.  The register is used for one or more base address requests within the range 0 to 255 from the
+           Do not link in the C run-time initialization object file.
+           Indicate to the linker that it should perform a relaxation optimization pass to shorten branches, calls and absolute memory addresses.  This option only
+           has an effect when used on the command line for the final link step.
+           Do not link in the C run-time initialization object file.
+           If you receive a linker error message that saying you have overflowed the available TOC space, you can reduce the amount of TOC space used with the
+           option, and pass the option to GCC when linking.
+           option.  For this to work, all objects linked together must be compiled with -mrelocatable or -mrelocatable-lib.  -mrelocatable code aligns the stack to
+           not use the smaller stack alignment of -mrelocatable.  Objects compiled with -mrelocatable-lib may be linked with objects compiled with any combination
+           or BSS section.  By default, num is 8.  The -G num switch is also passed to the linker.  All modules should be compiled with the same -G num value.
+           Some linkers are capable of detecting out-of-range calls and generating glue code on the fly.  On these systems, long calls are unnecessary and generate
+           slower code.  As of this writing, the AIX linker can do this, as can the GNU linker for PowerPC/64.  It is planned to add this feature to the GNU linker
+           and the branch island.  The Darwin/PPC linker prefers the first address and generates a "bl callee" if the PPC "bl" instruction reaches the callee
+           directly; otherwise, the linker generates "bl L42" to call the branch island.  The branch island is appended to the body of the calling function; it
+           On Mach-O (Darwin) systems, this option directs the compiler emit to the glue for every direct call, and the Darwin linker decides whether to use or
+           In the future, GCC may ignore all longcall specifications when the linker is known to generate glue.
+           Mark (do not mark) calls to "__tls_get_addr" with a relocation specifying the function argument.  The relocation allows the linker to reliably associate
+           Adds support for multithreading with the pthreads library.  This option sets flags for both the preprocessor and linker.
+           -ftree-vectorize and -funsafe-math-optimizations must also be enabled.  The MASS libraries must be specified at link time.
+           Enable linker relaxation.  Linker relaxation is a process whereby the linker attempts to reduce the size of a program by finding shorter versions of
+           Shorten some address references at link time, when possible; uses the linker option -relax.
+           "movi"/"shori"/"ptrel", but with assembler and/or linker tricks it is possible to generate symbols that cause "ptabs" or "ptrel" to trap.  This option
+           -mimpure-text, used in addition to -shared, tells the compiler to not pass -z text to the linker when linking a shared object.  Using this option, you
+           can link position-dependent code into a shared object.
+           -mimpure-text suppresses the "relocations remain against allocatable but non-writable sections" linker error message.  However, the necessary
+           Add support for multithreading using the POSIX threads library.  This option sets flags for both the preprocessor and linker.  This option does not
+               The Medium/Low code model: 64-bit addresses, programs must be linked in the low 32 bits of memory.  Programs can be statically or dynamically
+               linked.
+               The Medium/Middle code model: 64-bit addresses, programs must be linked in the low 44 bits of memory, the text and data segments must be less than
+               The Medium/Anywhere code model: 64-bit addresses, programs may be linked anywhere in memory, the text and data segments must be less than 2GB in
+               anywhere in memory (determined at link time).  The global register %g4 points to the base of the data segment.  Programs are statically linked and
+           By default, GCC links against startup code that assumes the SPU-style main function interface (which has an unconventional parameter list).  With
+           -mstdmain, GCC links your program against startup code that assumes a C99-style interface to "main", including a local copy of "argv" strings.
+           This option controls the version of libgcc that the compiler links to an executable and selects a software-managed cache for accessing variables in the
+           This option controls the version of libgcc that the compiler links to an executable and selects whether atomic updates to the software-managed cache of
+           Generate code suitable for big switch tables.  Use this option only if the assembler/linker complain about out of range branches within a switch table.
+           These options are passed down to the linker.  They are defined for compatibility with Diab.
+           Choose startup files and linker script suitable for the simulator.
+           This allows the literal pool to be placed in a data RAM/ROM, and it also allows the linker to combine literal pools from separate object files to remove
+           compilations, you get a multiple-definition error when you link them.  In this case, you must compile with -fcommon instead.  Compiling with -fno-common
+           GCC; it is part of the operating system).  If the GOT size for the linked executable exceeds a machine-specific maximum size, you get an error message
+           from the linker indicating that -fpic does not work; in that case, recompile with -fPIC instead.  (These maximums are 8k on the SPARC and 32k on the
+           If supported for the target machine, emit position-independent code, suitable for dynamic linking and avoiding any limit on the size of the global
+           These options are similar to -fpic and -fPIC, but generated position independent code can be only linked into executables.  Usually these options are
+           used when -pie GCC option is used during linking.
+           conjunction with -fpic or -fPIC for building code that forms part of a dynamic linker and cannot reference the address of a jump table.  On some
+           -Wl,--defsym,__stack_limit=0x7ffe0000 to enforce a stack limit of 128KB.  Note that this may only work with the GNU linker.
+           If compiling all code, including library code, with -fsplit-stack is not an option, then the linker can fix up these calls so that the code compiled
+           without -fsplit-stack always has a large stack.  Support for this is implemented in the gold linker in GNU binutils release 2.21 and later.
+           This option and its counterpart, -fno-leading-underscore, forcibly change the way C symbols are represented in the object file.  One use is to help link
+           feature can very substantially improve linking and load times of shared object libraries, produce more optimized code, provide near-perfect API export
+           Despite the nomenclature, "default" always means public; i.e., available to be linked against from outside the shared object.  "protected" and
+           Note that -fvisibility does affect C++ vague linkage entities. This means that, for instance, an exception class that is be thrown between DSOs must be
+           This prefix is also used for finding files such as crt0.o that are used for linking.
+           thus specified when searching for special linker files, if it can't find them using GCC_EXEC_PREFIX.  Linking using GCC also uses these directories when
+           correct support libraries to link against.  Failing to supply the correct flags may lead to subtle defects.  Supplying them in cases where they are not
