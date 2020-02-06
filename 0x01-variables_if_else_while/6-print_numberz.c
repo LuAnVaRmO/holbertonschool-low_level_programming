@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 /**
  * main - If else statement
@@ -8,11 +10,11 @@
 
 int main(void)
 {
-	char ch;
+	int ch;
 
-	for (ch = '0'; ch <= '9'; ch++)
+	for (ch = 0; ch <= 9; ch++)
 	{
-		putchar(ch);
+		putchar('0' + ch);
 	}
 	putchar('\n');
 	return (0);
