@@ -2,7 +2,7 @@
 
 /**
  * _isalpha - Entry point
- * description: we'll know if there are char alpha
+ * @c: is a integer number
  * Return: Always 0 (Success)
  */
 int _isalpha(int c)
