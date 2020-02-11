@@ -2,7 +2,7 @@
 
 /**
  * main - Entry point
- * description: prints alphabet 10 times
+ * description: prints 1 if lower and 0 if other
  * Return: Always 0 (Success)
  */
 int _islower(int c)
