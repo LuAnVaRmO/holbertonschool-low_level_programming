@@ -1,7 +1,7 @@
 #include "holberton.h"
 
 /**
- * main - Entry point
+ * _abs - Entry point
  * description: abs number
  * Return: Always 0 (Success)
  */

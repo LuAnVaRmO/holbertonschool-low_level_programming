@@ -1,7 +1,7 @@
 #include "holberton.h"
 
 /**
- * main - Entry point
+ * _isalpha - Entry point
  * description: we'll know if there are char alpha
  * Return: Always 0 (Success)
  */

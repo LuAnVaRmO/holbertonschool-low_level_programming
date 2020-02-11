@@ -1,7 +1,7 @@
 #include "holberton.h"
 
 /**
- * main - Entry point
+ * _islower - Entry point
  * description: prints 1 if lower and 0 if other
  * Return: Always 0 (Success)
  */
