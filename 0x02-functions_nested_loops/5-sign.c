@@ -2,7 +2,7 @@
 
 /**
  * print_sign - Entry point
- * description: return signs
+ * @n: Integer Number
  * Return: Always 0 (Success)
  */
 int print_sign(int n)

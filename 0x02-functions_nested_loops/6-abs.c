@@ -2,7 +2,7 @@
 
 /**
  * _abs - Entry point
- * description: abs number
+ * @n: Integer number
  * Return: Always 0 (Success)
  */
 
@@ -10,14 +10,14 @@ int _abs(int n)
 {
 	if (n > 0)
 	{
-		return(n);
+		return (n);
 	}
 	else if (n == 0)
 	{
-		return(n);
+		return (n);
 	}
 	else
 	{
-		return(n * -1);
+		return (n * -1);
 	}
 }
