@@ -6,9 +6,10 @@
  */
 void print_times_table(int n)
 {
-	int n1, n2, p, u, d, c;
+	int n1, n2, p;
 
-	if (n < 0 || n > 15)
+	p = (n1 * n2);
+	if (n > 15 || n < 0)
 	{
 		return;
 	}
@@ -16,23 +17,17 @@ void print_times_table(int n)
 	{
 		for (n2 = 0 ; n2 <= n ; n2++)
 		{
-			p = (n1 * n2);
-				if (p < 100 && p >= 10)
+			if (p < 100 && p >= 10)
 			{
-				u = (p % 10);
-				d = (p / 10);
 				_putchar(' ');
-				_putchar(d + '0');
-				_putchar(u + '0');
+				_putchar((p / 10) + '0');
+				_putchar((p % 10) + '0');
 			}
 			else if (p >= 100)
 			{
-				u = (p % 10);
-				d = ((p / 10) % 10);
-				c = (p / 100);
-				_putchar(c + '0');
-				_putchar(d + '0');
-				_putchar(u + '0');
+				_putchar((p / 100) + '0');
+				_putchar((p / 10) + '0');
+				_putchar((p % 10) + '0');
 			}
 			else if (n2 != 0 && p < 10)
 			{
