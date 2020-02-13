@@ -14,7 +14,7 @@ int main(void)
 
 		if (((i % 3) == 0) || ((i % 5) == 0))
 		{
-			ac += i;
+			ac = ac + i;
 		}
 		printf("%d\n", ac);
 	}
