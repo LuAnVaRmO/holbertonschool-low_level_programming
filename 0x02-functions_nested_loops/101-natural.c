@@ -17,6 +17,6 @@ int main(void)
 			ac += i;
 		}
 		printf("%d\n", ac);
+		return (0);
 	}
-	return (0);
 }
