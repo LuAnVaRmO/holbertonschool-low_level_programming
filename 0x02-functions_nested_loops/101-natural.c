@@ -7,14 +7,13 @@
 int main(void)
 {
 	int i, ac;
-
+	
+	ac = 0;
 	for (i = 0 ; i < 1024 ; i++)
 	{
-		ac = 0;
-
 		if (((i % 3) == 0) || ((i % 5) == 0))
 		{
-			ac = ac + i;
+			ac = i + ac;
 		}
 	}
 	printf("%d\n", ac);
