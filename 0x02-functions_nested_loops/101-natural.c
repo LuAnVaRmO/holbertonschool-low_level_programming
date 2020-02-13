@@ -16,7 +16,7 @@ int main(void)
 		{
 			ac = ac + i;
 		}
-		printf("%d\n", ac);
 	}
+	printf("%d\n", ac);
 	return (0);
 }
