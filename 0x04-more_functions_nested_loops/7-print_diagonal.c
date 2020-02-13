@@ -1,12 +1,12 @@
 #include "holberton.h"
 /**
- * print_diagona - Entry point
+ * print_diagonal - Entry point
  * @n: Integer Number
  * Return: _ for each n
  */
 void print_diagonal(int n)
 {
-    int i, j;
+	int i, j;
 
 	if (n <= 0)
 	{
@@ -29,5 +29,5 @@ void print_diagonal(int n)
 
 			}
 		}
-        }
+	}
 }
