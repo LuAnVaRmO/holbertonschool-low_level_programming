@@ -1,19 +1,19 @@
 #include "holberton.h"
 /**
  * _strcpy - copy str and null byte from src to dest
- * @dest: the copy of the string
- * @src: the string to copy
- * Return: the copied string
+ * @dest: copy of the string
+ * @src: string to copy
+ * Return: string
  */
 char *_strcpy(char *dest, char *src)
 {
-	int index;
+	int i;
 
-	for (index = 0; *(src + index) != 0; index++)
+	for (i = 0; src[i] != '\0'; i++)
 	{
-		*(dest + index) = *(src + index);
+		dest[i] = src[i];
 	}
-	*(dest + index) = '\0';
+	dest[i]= '\0';
 
 	return (dest);
 }
