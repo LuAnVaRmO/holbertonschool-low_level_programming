@@ -7,19 +7,10 @@
  */
 int _strcmp(char *s1, char *s2)
 {
-	while (1)
+	while ((*s1 == *s2) && (*s1 != '\0'))
 	{
-		if (*s1 < *s2)
-		{
-			return (*s1 - *s2);
-		}
-		else if (*s2 < *s1)
-		{
-			return (*s2);
-		}
-		else
-		{
-			return (0);
-		}
+		++*s1;
+		++*s2;
 	}
+	return (*s1 - *s2);
 }
