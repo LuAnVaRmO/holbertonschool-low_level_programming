@@ -7,24 +7,30 @@
  */
 char *cap_string(char *a)
 {
-	int i;
+	int i, c;
+	int cap;
+	char cases[] = ",;.!?(){}\n\t\" ";
 
-	for (i = 0; a[i]; i++)
+	for (i = 0, cap = 0; a[i] != '\0'; i++)
 	{
-		if (a[i + 1] >= 97 && a[i + 1] <= 122)
+		if (a[0] > 96 && a[0] < 123)
+			cap = 1;
+		for (c = 0; cases[c] != '\0'; c++)
 		{
-			if (a[i] == 32 || a[i] == '\t' || a[i] == '\n' || a[i] == 44)
+			if (cases[c] == a[i])
+				cap = 1;
+		}
+		if (cap)
+		{
+			if (a[i] > 96 && a[i] < 123)
 			{
-				a[i + 1] = a[i + 1] - 32;
+				a[i] -= 32;
+				cap = 0;
 			}
-			if (a[i] == 59 || a[i] == 46 || a[i] == 33 || a[i] == 63 || a[i] == 123)
-			{
-				a[i + 1] = a[i + 1] - 32;
-			}
-			if (a[i] == 125 || a[i] == 34 || a[i] == 40 || a[i] == 41)
-			{
-				a[i + 1] = a[i + 1] - 32;
-			}
+			else if (a[i] > 64 && a[i] < 91)
+				cap = 0;
+			else if (a[i] > 47 && a[i] < 58)
+				cap = 0;
 		}
 	}
 	return (a);
