@@ -1,9 +1,9 @@
 #include "holberton.h"
 /**
- * _strcmp - compare two strings
- * @s1: string to compare
- * @s2: string to compare too
- * Return: int
+ * reverse_array - compare two strings
+ * @a: array of ints
+ * @n: Size of the array
+ * Return: 0
  */
 void reverse_array(int *a, int n)
 {
@@ -14,6 +14,6 @@ void reverse_array(int *a, int n)
 	{
 		j = a[i];
 		a[i] = a[n - i - 1];
-		a[n - i - 1] = j;	
+		a[n - i - 1] = j;
 	}
 }
