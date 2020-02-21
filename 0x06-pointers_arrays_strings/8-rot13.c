@@ -8,19 +8,24 @@
 
 char *rot13(char *s)
 {
-	int i, j;
-	char alpha[] = "aAeEoOtTlL";
-	char replace[] = "4433007711";
+	int i, c;
+	char alph[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char rot[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
 
-	for (i = 0; s[i] != '\0'; i++)
+	i = 0;
+	while (s[i])
 	{
-		for (j = 0; j <= 9; j++)
+		c = 0;
+		while (c < 52)
 		{
-			if (alpha[j] == s[i])
+			if (s[i] == alph[c])
 			{
-				s[i] = replace[j];
+				s[i] = rot[c];
+				break;
 			}
+			c++;
 		}
+		i++;
 	}
 	return (s);
 }
