@@ -4,13 +4,14 @@
  * @s: Array of chars
  * @b: char to modify
  * @n: size of bits to change
- * Return: pointer to charcater s[]
+ * Return: pointer to charcater s
  */
 char *_memset(char *s, char b, unsigned int n)
 {
 	int i;
 
-	for (i = 0; s[i] >= s[n - 1]; i++)
+	n--;
+	for (i = 0; s[i] == s[n]; i++)
 	{
 		s[i] = b;
 	}
