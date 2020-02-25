@@ -1,8 +1,8 @@
 #include "holberton.h"
 /**
- * _strstr- search subchain
+ * _strstr - search subchain
  * @haystack: string to search
- * @neddle: subchars to compare
+ * @needle: subchars to compare
  * Return: char
  */
 char *_strstr(char *haystack, char *needle)
