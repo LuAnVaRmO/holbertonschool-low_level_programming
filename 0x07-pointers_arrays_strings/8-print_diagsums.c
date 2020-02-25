@@ -8,19 +8,19 @@
  */
 void print_diagsums(int *a, int size)
 {
-        int i, sum, sumRev;
+	int i, sum, sumRev;
 
 	sum = 0;
 	sumRev = 0;
-        for (i = 0; i < (size * size);)
-        {
-                sum += a[i];
-                i = i + size + 1;
-        }
-        for (i = size - 1; i < (size * size - 1);)
-        {
-                sumRev += a[i];
-                i = i + size - 1;
-        }
-        printf("%d, %d\n", sum, sumRev);
+	for (i = 0; i < (size * size);)
+	{
+		sum += a[i];
+		i = i + size + 1;
+	}
+	for (i = size - 1; i < (size * size - 1);)
+	{
+		sumRev += a[i];
+		i = i + size - 1;
+	}
+	printf("%d, %d\n", sum, sumRev);
 }
