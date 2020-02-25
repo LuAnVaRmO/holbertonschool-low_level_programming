@@ -1,19 +1,24 @@
 #include "holberton.h"
 /**
- * _memcpy - copy str the number of bytes from src to dest
+ * _strchr - copy str the number of bytes from src to dest
  * @s: string to search
  * @c: char to look for
  * Return: char s
  */
 char *_strchr(char *s, char c)
 {
-	int i, j;
+	int j;
 
-	for (i = 0; s[i] == c; i++)
+	for (j = 0 ; s[j] != '\0'; j++)
 	{
+		if (s[j] == c)
+		{
+			return (s + j);
+		}
+		else if (s[j] != c)
+		{
+			return (0);
+		}
 	}
-	for (j = i ; s[j] != '\0'; j++)
-	{
-	}
-	return (s);
+	return (0);
 }
