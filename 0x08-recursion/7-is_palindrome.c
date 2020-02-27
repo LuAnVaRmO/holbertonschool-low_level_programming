@@ -6,24 +6,24 @@
  * @e: end of string
  * Return: integer number
  */
-int palLen(char str[],int s, int e)
+int palLen(char str[], int s, int e)
 {
 	if (s == e)
 	{
 		return (1);
-  	}
+	}
 	if (str[s] != str[e])
 	{
 		return (0);
-  	}
+	}
 	if (s < e + 1)
 	{
 		return (palLen(str, s + 1, e - 1));
-  	}
+	}
 	return (1);
 }
 /**
- * is_palindromer - Function that return if a string is palindrome
+ * is_palindrome - Function that return if a string is palindrome
  * @s: String to analize
  * Return: integer number
  */
