@@ -63,5 +63,6 @@ int sqrt_rec(int x, int y);
 int is_prime_number(int n);
 int prime_num(int x, int y);
 int is_palindrome(char *s);
+int palLen(char str[],int s, int e);
 
 #endif

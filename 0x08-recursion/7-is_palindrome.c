@@ -1,36 +1,52 @@
 #include "holberton.h"
 /**
- * is_prime_number - Function that return if an int is prime or not
- * @n: Int number
+ * palLen - Function that go at the end of a string
+ * @str: string
+ * @s: start of the way
+ * @e: end of string
+ * Return: integer number
+ */
+int palLen(char str[],int s, int e)
+{
+	if (s == e)
+	{
+		return (1);
+  	}
+	if (str[s] != str[e])
+	{
+		return (0);
+  	}
+	if (s < e + 1)
+	{
+		return (palLen(str, s + 1, e - 1));
+  	}
+	return (1);
+}
+/**
+ * is_palindromer - Function that return if a string is palindrome
+ * @s: String to analize
  * Return: integer number
  */
 int is_palindrome(char *s)
 {
-	if (*s)
-	{
-		is_palindrome(*s)
-		
-	}
-	return (prime_num(1, n));
-}
-/**
- * prime_num - verify number to number if is prime
- * @x: Int number
- * @y: int number same to n
- * Return: integer number
- */
-int prime_num(int x, int y)
-{
-	if (x * x == y)
+	int n = _strlen_recursion(s);
+
+	if (n == 0)
 	{
 		return (0);
 	}
-	else if (x * x > y)
+	return (palLen(s, 0, n - 1));
+}
+/**
+ * _strlen_recursion - Its a function that return the length of a string.
+ * @s: Char to count the lenght.
+ * Return: integer number.
+ */
+int _strlen_recursion(char *s)
+{
+	if (*s)
 	{
-		return (1);
+		return (_strlen_recursion(++s) + 1);
 	}
-	else
-	{
-		return (prime_num(x + 1, y));
-	}
+	return (0);
 }
