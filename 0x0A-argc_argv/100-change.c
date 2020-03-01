@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 /**
- * _get_change - tells you minimun cents to give back
- * @change: Argument count
+ * change - tells you minimun cents to give back
+ * @c: Count
  * Return: 0
  */
 int change(int c)
