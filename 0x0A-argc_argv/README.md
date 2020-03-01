@@ -1,0 +1,1 @@
+This project is to know and use arguments on main function
