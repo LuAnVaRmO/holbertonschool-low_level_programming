@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 	add = 0;
 	if (argc < 1)
 	{
-		return (0);
+		printf("0\n");
 	}
 	else
 	{
