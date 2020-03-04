@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 /**
- * create_array - create an array of chars
+ * _strdup - copy an array of chars
  * @str: array of character
  * Description: create a copy of the string
  * Return: char or null if fail
