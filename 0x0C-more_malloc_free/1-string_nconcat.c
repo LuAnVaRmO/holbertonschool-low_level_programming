@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 /**
- * str_concat - concat 2 array of chars
+ * string_nconcat - concat 2 array of chars
  * @s1: array of characters
  * @s2: array to concat
  * @n: number of bytes to concat of s2
