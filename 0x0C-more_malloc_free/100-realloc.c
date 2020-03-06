@@ -1,7 +1,6 @@
 #include "holberton.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 /**
  * _realloc - change the memory alocated
  * @ptr: pointer to the memory previously allocated
@@ -12,11 +11,13 @@
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
+	unsigned int i;
 	char *newptr;
 
 	if (ptr == NULL)
 	{
-		return (malloc(new_size));
+		newptr = (malloc(new_size));
+		return (newptr);
 	}
 	if (new_size == old_size)
 	{
@@ -28,7 +29,14 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		return (NULL);
 	}
 	newptr = malloc(new_size);
-	bcopy(ptr, newptr, (int) old_size);
+	if (newptr == NULL)
+	{
+		return (NULL);
+	}
+	for (i = 0; i < old_size; i++)
+	{
+		newptr = ptr;
+	}
 	free(ptr);
 	return (newptr);
 }
