@@ -3,7 +3,7 @@
 #include <stdlib.h>
 /**
  * _realloc - change the memory alocated
- * @ptr: pointer to the memory previously allocated
+ * @ptr: pointer to the memory allocated
  * @old_size: size on bits
  * @new_size: new size of bits
  * Description: change the size of the memory
