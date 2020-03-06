@@ -11,7 +11,6 @@
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	unsigned int i;
 	void  *newptr;
 
 	if (ptr == NULL)
@@ -33,10 +32,24 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	{
 		return (NULL);
 	}
-	for (i = 0; i < old_size; i++)
-	{
-		(newptr) = (ptr);
-	}
-	free(ptr);
+	_memcpy(newptr, ptr, old_size);
+       	free(ptr);
 	return (newptr);
+}
+/**
+ * _memcpy - copy str the number of bytes from src to dest
+ * @dest: copy of the string
+ * @src: string to copy
+ * @n: integer number
+ * Return: char dest
+ */
+char *_memcpy(char *dest, char *src, unsigned int n)
+{
+	unsigned int i;
+
+	for (i = 0; i < n; i++)
+	{
+		dest[i] = src[i];
+	}
+	return (dest);
 }
