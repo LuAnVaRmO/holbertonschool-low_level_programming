@@ -5,9 +5,6 @@
 /**
  * print_dog - print the struct dog
  * @d: the struct dog to print
- * @n: name
- * @o: owner
- * @a: age
  */
 void print_dog(struct dog *d)
 {
