@@ -25,5 +25,4 @@ void print_dog(struct dog *d)
 	if (o == NULL)
 		o = "(nil)";
 	printf("Name: %s\nAge: %.6f\nOwner: %s\n", n, a, o);
-	}
 }
