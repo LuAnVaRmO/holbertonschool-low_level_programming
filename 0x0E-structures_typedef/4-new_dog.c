@@ -1,68 +1,19 @@
-#include <stdlib.h>
+#include<stdio.h>
+#include<stdlib.h>
 #include "dog.h"
 /**
- * new_dog - new dog
- * @name: the name of puppy
- * @age: age of the puppy
- * @owner: of the dog
- * Return: new dog_t
+ * new_dog - creates a new dog
+ * @name: name of the dog
+ * @age: age of the dog
+ * @owner: owner of the dog
+ * Return: On success 1.
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	int lname, lowner, i, j;
-	dog_t *newdog;
+	dog_t *new_dog = malloc(sizeof(dog_t));
 
-	if (name == NULL || owner == NULL)
-		return (NULL);
-
-	newdog = malloc(sizeof(dog_t));
-	if (newdog == NULL)
-		return (NULL);
-	lname = _strlen(name);
-	lowner = _strlen(owner);
-	lname++;
-	lowner++;
-
-	newdog->name = malloc(sizeof(char) * lname);
-	if (newdog->name == NULL)
-	{
-		free(newdog);
-		return (NULL);
-	}
-	newdog->owner = malloc(sizeof(char) * lowner);
-	if (newdog->owner == NULL)
-	{
-		free(newdog->name);
-		free(newdog);
-		return (NULL);
-	}
-	for (i = 0; i < lname; i++)
-	{
-		newdog->name[i] = name[i];
-	}
-	newdog->name[i] = '\0';
-	for (j = 0; j < lowner; j++)
-	{
-		newdog->owner[j] = owner[j];
-	}
-	newdog->owner[j] = '\0';
-	newdog->age = age;
-	return (newdog);
-}
-/**
- * _strlen - show length of string
- * @s: character
- * Description: Show lenght of string
- * Return: value of lenght
- */
-int _strlen(char *s)
-{
-	int i;
-	int len;
-
-	for (i = 0 ; s[len] != '\0' ; ++i)
-	{
-		len = i;
-	}
-	return (len);
+	new_dog->name = name;
+	new_dog->age = age;
+	new_dog->owner = owner;
+	return (new_dog);
 }
