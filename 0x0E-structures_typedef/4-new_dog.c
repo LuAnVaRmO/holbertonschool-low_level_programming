@@ -1,35 +1,66 @@
 #include <stdlib.h>
 #include "dog.h"
-
 /**
- * init_dog - Initialize the struct dog
+ * new_dog - new dog
  * @name: the name of puppy
  * @age: age of the puppy
  * @owner: of the dog
+ * Return: new dog_t
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	char *n, *o;
+	int lname, lowner, i, j;
 	dog_t *newdog;
 
-	new_dog->name = n;
-	new_dog->owner = o;
-	newdog = init_dog(*newdog, *n, new_dog->age, *o);
+	if (name == NULL || owner == NULL)
+		return (NULL);
+
+	newdog = malloc(sizeof(dog_t));
+	if (newdog == NULL)
+		return (NULL);
+	lname = _strlen(name);
+	lowner = _strlen(owner);
+
+	newdog->name = malloc(sizeof(char) * lname + 1);
+	if (newdog->name == NULL)
+	{
+		free(newdog);
+		return (NULL);
+	}
+	newdog->owner = malloc(sizeof(char) * lowner + 1);
+	if (newdog->owner == NULL)
+	{
+		free(newdog->name);
+		free(newdog);
+		return (NULL);
+	}
+	for (i = 0; i < lname; i++)
+	{
+		newdog->name[i] = name[i];
+	}
+	newdog->name[i] = '\0';
+	for (j = 0; j < lowner; j++)
+	{
+		newdog->owner[j] = owner[j];
+	}
+	newdog->owner[j] = '\0';
+	newdog->age = age;
 	return (newdog);
 }
 /**
- * init_dog - Initialize the struct dog
- * @d: the struct dog without initialize
- * @name: the name of puppy
- * @age: age of the puppy
- * @owner: of the dog
+ * _strlen - show length of string
+ * @s: character
+ * Description: Show lenght of string
+ * Return: value of lenght
  */
-void init_dog(struct dog *d, char *name, float age, char *owner)
+int _strlen(char *s)
 {
-	if (d)
+	int i;
+	int len;
+
+	for (i = 0 ; s[len] != '\0' ; ++i)
 	{
-		d->name = name;
-		d->age = age;
-		d->owner = owner;
+		len = i;
 	}
+	return (len);
 }
