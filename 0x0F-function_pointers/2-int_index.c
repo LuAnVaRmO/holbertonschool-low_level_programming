@@ -3,7 +3,7 @@
 #include "function_pointers.h"
 
 /**
- * array_iterator - prints an array
+ * int_index - compare elements of array with *cmp
  * @array: Integer array
  * @size: number of elements of the array
  * @cmp: function pointer to use
@@ -14,7 +14,8 @@ int int_index(int *array, int size, int (*cmp)(int))
 	int i, temp;
 
 	if (array)
-	{	if (size)
+	{
+		if (size)
 		{
 			if (cmp)
 			{
