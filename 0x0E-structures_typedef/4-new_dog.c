@@ -2,34 +2,50 @@
 #include "dog.h"
 
 /**
- * init_dog - Initialize the struct dog
- * @name: the name of puppy
- * @age: age of the puppy
- * @owner: of the dog
- */
+* new_dog - create a new dog
+* @name: name of dog
+* @age: age of dog
+* @owner: owner of dog
+* Return: pointer to 'dog_t'
+*/
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	char *n, *o;
-	dog_t *newdog;
+	dog_t *dog;
+	char *new_name, *new_owner;
+	int i;
 
-	new_dog->name = n;
-	new_dog->owner = o;
-	newdog = init_dog(*newdog, *n, new_dog->age, *o);
-	return (newdog);
-}
-/**
- * init_dog - Initialize the struct dog
- * @d: the struct dog without initialize
- * @name: the name of puppy
- * @age: age of the puppy
- * @owner: of the dog
- */
-void init_dog(struct dog *d, char *name, float age, char *owner)
-{
-	if (d)
+	dog = malloc(sizeof(dog_t));
+	if (dog == NULL)
+		return (NULL);
+	for (i = 0; name[i]; ++i)
+		;
+	new_name = malloc(sizeof(char) * (i + 1));
+	if (new_name == NULL)
 	{
-		d->name = name;
-		d->age = age;
-		d->owner = owner;
+		free(dog);
+		return (NULL);
 	}
+	while (i >= 0)
+	{
+		new_name[i] = name[i];
+		--i;
+	}
+	for (i = 0; owner[i]; ++i)
+		;
+	new_owner = malloc(sizeof(char) * (i + 1));
+	if (new_owner == NULL)
+	{
+		free(new_name);
+		free(dog);
+		return (NULL);
+	}
+	while (i >= 0)
+	{
+		new_owner[i] = owner[i];
+		--i;
+	}
+	dog->name = new_name;
+	dog->age = age;
+	dog->owner = new_owner;
+	return (dog);
 }
