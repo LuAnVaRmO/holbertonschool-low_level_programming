@@ -50,25 +50,28 @@ void print_all(const char * const format, ...)
 
 	va_start(ap, format);
 
-	while (*(format + i))
+	if (format)
 	{
-		switch (*(format + i))
+		while (*(format + i))
 		{
-		case 'c':
-			print_char(va_arg(ap, int));
-			break;
-       		case 'i':
-			print_integer(va_arg(ap, int));
-			break;
-		case 'f':
-			print_float(va_arg(ap, double));
-			break;
-		case 's':
-			print_string(va_arg(ap, char *));
-			break;
-		default:
-			ignore = 1;
-			break;
+			switch (*(format + i))
+			{
+			case 'c':
+				print_char(va_arg(ap, int));
+				break;
+			case 'i':
+				print_integer(va_arg(ap, int));
+				break;
+			case 'f':
+				print_float(va_arg(ap, double));
+				break;
+			case 's':
+				print_string(va_arg(ap, char *));
+				break;
+			default:
+				ignore = 1;
+				break;
+			}
 		}
 		if (*(format + i + 1) != 0 && ignore == 0)
 		{
