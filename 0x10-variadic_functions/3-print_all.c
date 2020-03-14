@@ -12,7 +12,6 @@ void print_all(const char * const format, ...)
 	va_list ap;
 
 	va_start(ap, format);
-
 	if (format)
 	{
 		while (*(format + i))
@@ -31,8 +30,10 @@ void print_all(const char * const format, ...)
 			case 's':
 				s = va_arg(ap, char *);
 				while (s == NULL)
+				{
 					s = "(nil)";
 					break;
+				}
 				printf("%s", s);
 				break;
 			default:
@@ -41,6 +42,7 @@ void print_all(const char * const format, ...)
 			}
 			if (*(format + i + 1) != 0 && ignore == 0)
 				printf(", ");
+
 			i++;
 			ignore = 0;
 		}
