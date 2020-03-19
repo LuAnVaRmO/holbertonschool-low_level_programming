@@ -5,7 +5,7 @@
  * Description: Show lenght of string
  * Return: value of lenght
  */
-int _strlen(const char *s)
+int _strlen(char *s)
 {
 	int i;
 	int len;
@@ -29,7 +29,6 @@ list_t *add_node(list_t **head, const char *str)
 	char *s;
 	list_t *add;
 
-	len = _strlen(str);
 	if (str == NULL)
 		return (NULL);
 	add = malloc(sizeof(list_t));
@@ -41,6 +40,7 @@ list_t *add_node(list_t **head, const char *str)
 		free(add);
 		return (NULL);
 	}
+	len = _strlen(s);
 	add->str = s;
 	add->len = len;
 	add->next = *head;
