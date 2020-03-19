@@ -1,5 +1,22 @@
 #include "lists.h"
 /**
+ * _strlen - show length of string
+ * @s: character
+ * Description: Show lenght of string
+ * Return: value of lenght
+ */
+int _strlen(const char *s)
+{
+	int i;
+	int len;
+
+	for (i = 0 ; s[len] != '\0' ; ++i)
+	{
+		len = i;
+	}
+	return (len);
+}
+/**
  * add_node - add node
  * @head: pointer of a singly linked list
  * @str: string to add
@@ -12,7 +29,7 @@ list_t *add_node(list_t **head, const char *str)
 	char *s;
 	list_t *add;
 
-	len = strlen(str);
+	len = _strlen(str);
 	add = *head;
 	add = malloc(sizeof(list_t));
 	if (add == NULL)
