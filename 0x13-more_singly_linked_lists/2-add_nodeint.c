@@ -1,12 +1,13 @@
 #include "lists.h"
 /**
- * add_nodeint - add node
+ * insert_nodeint_at_index - add node at specific index
  * @head: pointer of a singly linked list
+ * @idx: index to insert new node
  * @n:int to add
- * Description: add a node at the start of the list
+ * Description: add a node at the index 
  * Return: number of nodes
  */
-listint_t *add_nodeint(listint_t **head, const int n)
+listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
 	listint_t *add;
 
