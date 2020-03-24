@@ -1,8 +1,8 @@
 #include "lists.h"
 /**
- * add_node_end - add node
+ * add_nodeint_end - add node
  * @head: pointer of a singly linked list
- * @str: string to add
+ * @n: int to add
  * Description: add a node at the start of the list
  * Return: number of nodes
  */
