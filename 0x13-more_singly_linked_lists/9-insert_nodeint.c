@@ -24,11 +24,19 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	{
 		new->next =  loc;
 		*head = new;
-		return (*head);
+		return (new);
 	}
-	for (count = 0; count < (idx - 1) && loc; count++)
-		loc = loc->next;
-	new->next = loc->next;
-	loc->next = new;
-	return (new);
+	if (idx > 0)
+	{
+		if (loc->next != NULL)
+		{
+			for (count = 0; count < (idx - 1) && loc->next; count++)
+				loc = loc->next;
+			new->next = loc->next;
+			loc->next = new;
+			return (new);
+		}
+       	}
+	free(new);
+	return (NULL);
 }
