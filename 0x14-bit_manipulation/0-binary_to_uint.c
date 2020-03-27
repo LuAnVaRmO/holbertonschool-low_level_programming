@@ -1,7 +1,7 @@
 #include "holberton.h"
 /**
  * binary_to_uint - convert a binary
- * @b: stringw with 0 and 1
+ * @b: string with 0 and 1
  * Description: convert a binary to a positive integer
  * Return: Converted number or 0 if fail
  */
