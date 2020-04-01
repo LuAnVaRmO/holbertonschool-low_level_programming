@@ -21,6 +21,7 @@ int main(int argc, char *argv[])
 {
 	int fddest, fdsrc, vread, vwrite;
 	char buffer[1024];
+	mode_t perms;
 
 	if (argc != 3)
 	{
@@ -30,7 +31,8 @@ int main(int argc, char *argv[])
 	fdsrc = open(argv[1], O_RDONLY);
 	if (fdsrc == -1)
 		printerror("Error: Can't read from file ", argv[1], 98);
-	fddest = open(argv[2], O_RDWR | O_CREAT | O_TRUNC, 00664);
+	perms = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
+	fddest = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, perms);
 	if (fddest == -1)
 		printerror("Error: Can't write to ", argv[2], 99);
 	vread = 1024;
