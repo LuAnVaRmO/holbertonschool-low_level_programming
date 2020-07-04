@@ -4,14 +4,12 @@ SRC=main.c holberton.c
 OBJ=$(SRC:.c=.o)
 NAME=holberton
 RM=rm -f
-ifneq ("$(wildcard m.h)", "")
-all: $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
 .PHONY: all clean oclean fclean re
+all: m.h $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
 clean:
 	$(RM) *~ $(NAME)
 oclean:
 	$(RM) $(OBJ)
 fclean: clean oclean
 re: oclean all
-endif
